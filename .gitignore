@@ -131,11 +131,5 @@ dmypy.json
 .pyre/
 
 .idea
-.idea/.gitignore
-.idea/Tiny_links.iml
-.idea/inspectionProfiles/
-.idea/misc.xml
-.idea/modules.xml
-Tiny_links/
-manage.py
+
 templates/
