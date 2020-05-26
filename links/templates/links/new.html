@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New tiny link</title>
+</head>
+<body>
+<form
+        method="post"
+        action="{% url 'links:create' %}"
+>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Get tiny link">
+</form>
+</body>
+</html>

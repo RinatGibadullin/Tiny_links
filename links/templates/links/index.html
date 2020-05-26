@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All links</title>
+</head>
+<body>
+<a href="{% url 'links:new' %}">Create new tiny link</a>
+<h1>
+    {% if links_list %}
+    <ul>
+        {% for link in links_list %}
+            <li>
+                {{ link.orig_link }} --- <a href="http://127.0.0.1:8000/links/{{ link.tiny_link }}">http://127.0.0.1:8000/links/{{ link.tiny_link }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No tiny links are available</p>
+{% endif %}
+</h1>
+</body>
+</html>
