@@ -3,6 +3,7 @@ import uuid
 
 import bcrypt as bcrypt
 from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views import generic
 
@@ -14,7 +15,7 @@ class IndexView(generic.ListView):
     context_object_name = 'links_list'
 
     def get_queryset(self):
-        return Link.objects.filter()
+        return Link.objects.filter().order_by('-follow_quantity')
 
 
 class CreateView(generic.CreateView):
@@ -25,7 +26,7 @@ class CreateView(generic.CreateView):
 
 def get_tiny_link(orig_link):
     tiny_link = bcrypt.hashpw(orig_link.encode('utf-8'), bcrypt.gensalt())
-    return tiny_link.decode("utf-8")[30:40]
+    return tiny_link.decode("utf-8")[40:50]
 
 
 def create_tiny_link(request):
@@ -35,4 +36,18 @@ def create_tiny_link(request):
         tiny_link=get_tiny_link(orig_link=orig_link)
     )
     link.save()
+    return HttpResponseRedirect(reverse('links:index'))
+
+
+def open_tiny_link(request, tiny_link):
+    link = get_object_or_404(Link, tiny_link=tiny_link)
+    orig_link = link.orig_link
+    link.follow_quantity += 1
+    link.save()
+    return HttpResponseRedirect(orig_link)
+
+
+def delete_tiny_link(request, link_id):
+    link = get_object_or_404(Link, id=link_id)
+    link.delete()
     return HttpResponseRedirect(reverse('links:index'))

@@ -1,17 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>New tiny link</title>
-</head>
-<body>
-<form
-        method="post"
-        action="{% url 'links:create' %}"
->
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Get tiny link">
-</form>
+{% extends 'links/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <a href="{% url 'links:index' %}" class="btn btn-primary">
+        All links
+    </a>
+    <h1 class="mt-2">New tiny link</h1>
+    <hr class="mt-0 mb-4">
+    <form
+            method="post"
+            novalidate
+            action="{% url 'links:create' %}"
+    >
+        {% csrf_token %}
+        {{ form.orig_link }}
+        <button type="submit" class="btn btn-success">Save</button>
+    </form>
+{% endblock %}
 </body>
 </html>
