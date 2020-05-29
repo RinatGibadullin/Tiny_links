@@ -15,18 +15,22 @@
         <ul class="justify-content-center">
             {% for link in links_list %}
                 <li>
-                    <div class="card">
+                    <div class="card" id="card-shadow" style="box-shadow: 9px 11px 10px 0px rgba(0,0,0,0.36);">
                         <div class="card-header">
-                            <h4>{{ link.orig_link }}</h4>
+                            <span class="badge badge-info">
+                                <h5>
+                                    {{ link.orig_link }}
+                                </h5>
+                            </span>
                             <p class="font-weight-normal">was opened {{ link.follow_quantity }} times</p>
                         </div>
                         <div class="card-body">
-                            <h6 class="card-title">http://127.0.0.1:8000/links/{{ link.tiny_link }}</h6>
-                            <a href="{% url 'links:delete' link.id %}" class="btn btn-danger">
-                                DELETE
-                            </a>
+                            <a class="card-title"href="http://127.0.0.1:8000/links/{{ link.tiny_link }}">http://127.0.0.1:8000/links/{{ link.tiny_link }}</a>
                             <a href="{% url 'links:open' link.tiny_link %}" class="btn btn-primary">
                                 Open link
+                            </a>
+                            <a href="{% url 'links:delete' link.id %}" class="btn btn-danger">
+                                DELETE
                             </a>
                         </div>
                     </div>
