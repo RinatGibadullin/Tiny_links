@@ -1,10 +1,11 @@
-/*ul{*/
-/*    list-style-type: none*/
-/*}*/
-/** {*/
-/*    margin: 10px;*/
-/*}*/
+li {
+    list-style-type: none;
+}
+* {
+    margin: 10px;
+}
 
-/*#card-shadow {*/
-/*    box-shadow: 9px 11px 10px 0px rgba(0,0,0,0.36);*/
-/*}*/
+#card-shadow {
+    border-radius: 15px;
+    box-shadow: 9px 11px 10px 0px rgba(0,0,0,0.36);
+}

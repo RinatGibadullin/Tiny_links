@@ -3,8 +3,9 @@
 
 {% block content %}
     <div class="row">
-        <a href="{% url 'links:new' %}">
-            {% bootstrap_button "Create new tiny link" button_type='link' button_class="btn-primary" %}
+        <a href="{% url 'links:new' %}" class="btn btn-outline-primary">
+            <i class="fas fa-plus"></i>
+            Create new tiny link
         </a>
     </div>
     <div class="justify-content-center">
@@ -15,7 +16,7 @@
         <ul class="justify-content-center">
             {% for link in links_list %}
                 <li>
-                    <div class="card" id="card-shadow" style="box-shadow: 9px 11px 10px 0px rgba(0,0,0,0.36);">
+                    <div class="card" id="card-shadow">
                         <div class="card-header">
                             <span class="badge badge-info">
                                 <h5>
@@ -25,11 +26,13 @@
                             <p class="font-weight-normal">was opened {{ link.follow_quantity }} times</p>
                         </div>
                         <div class="card-body">
-                            <a class="card-title"href="http://127.0.0.1:8000/links/{{ link.tiny_link }}">http://127.0.0.1:8000/links/{{ link.tiny_link }}</a>
+                            <a class="card-title" href="http://127.0.0.1:8000/links/{{ link.tiny_link }}">http://127.0.0.1:8000/links/{{ link.tiny_link }}</a>
                             <a href="{% url 'links:open' link.tiny_link %}" class="btn btn-primary">
-                                Open link
+                                <i class="fas fa-link"></i>
+                                OPEN LINK
                             </a>
                             <a href="{% url 'links:delete' link.id %}" class="btn btn-danger">
+                                <i class="far fa-trash-alt"></i>
                                 DELETE
                             </a>
                         </div>

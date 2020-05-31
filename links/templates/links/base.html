@@ -1,12 +1,10 @@
 <!doctype html>
-{% load static %}
 <html lang="en">
+{% load static %}
 <head>
-    <style>
-        ul{
-            list-style-type: none;
-        }
-    </style>
+    {% block style %}
+        <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/all.min.css" %}" />
+    {% endblock %}
     <link rel="stylesheet" type="text/css" href="{% static 'links/style.css' %}"/>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

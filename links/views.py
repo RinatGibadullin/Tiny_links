@@ -24,9 +24,15 @@ class CreateView(generic.CreateView):
     fields = ['orig_link']
 
 
+class DetailView(generic.DetailView):
+    model = Link
+    pk_url_kwarg = 'link_id'
+    template_name = 'links/detail.html'
+
+
 def get_tiny_link(orig_link):
     tiny_link = bcrypt.hashpw(orig_link.encode('utf-8'), bcrypt.gensalt())
-    return tiny_link.decode("utf-8")[40:50]
+    return tiny_link.decode("utf-8")[40:50].replace('/', '')
 
 
 def create_tiny_link(request):
@@ -36,7 +42,7 @@ def create_tiny_link(request):
         tiny_link=get_tiny_link(orig_link=orig_link)
     )
     link.save()
-    return HttpResponseRedirect(reverse('links:index'))
+    return HttpResponseRedirect(reverse('links:detail', args=(link.id,)))
 
 
 def open_tiny_link(request, tiny_link):
